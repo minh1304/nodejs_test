@@ -1,15 +1,9 @@
-const express = require('express')
-const router = express.Router()
-const newsController = require('../app/controllers/NewsController')
+import express from 'express';
+const router = express.Router();
+import newsController from '../app/controllers/NewsController'
 
-// newsController.index
-
-
-router.use('/:slug' ,newsController.show  )
-router.use('/',newsController.index  )
+router.get('/:slug', newsController.show);
+router.get('/', newsController.index);
 
 
-
-
-
-module.exports = router;
+export default router

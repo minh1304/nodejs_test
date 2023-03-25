@@ -1,13 +1,8 @@
-const newsRouter = require('./news')
-const siteRouter = require('./site')
-
+import newsRouter from './news'
+import siteRouter from './site'
 
 function route(app) {
-
       app.use('/news', newsRouter)
       app.use('/', siteRouter)
-      
-      
-
 }
-module.exports = route
+export default route ;

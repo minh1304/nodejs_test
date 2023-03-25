@@ -8,5 +8,5 @@ class NewController {
         res.send('News detail')
 
     }
-}
-module.exports = new NewController;
+ }
+ export default new NewController;
