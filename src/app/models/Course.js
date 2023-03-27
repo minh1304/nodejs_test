@@ -1,13 +1,24 @@
 import mongoose from 'mongoose';
-const Schema = mongoose.Schema;
+const slug = require('mongoose-slug-generator');
 
-const Course = new Schema({
-    id: { type: Number, minLength: 1 },
-    name: { type: String, maxLength: 255 },
-    description: { type: String, minLength: 1 },
-    instructor: { type: String, maxLength: 255 },
-    price: { type: Number, minLength: 1 },
-    createDate: { type: Date, default: Date.now },
-    updateDate: { type: Date, default: Date.now },
-});
-export default mongoose.model('Course', Course);
+const Schema = mongoose.Schema;
+const CourseSchema = new Schema(
+    {
+        name: { type: String },
+        description: { type: String, minLength: 1 },
+        video_id: { type: String, required: true },
+        image: { type: String },
+        price: { type: Number, minLength: 1 },
+        slug: {
+            type: String,
+            slug: 'name',
+        },
+    },
+    {
+        timestamps: true,
+    },
+);
+
+CourseSchema.plugin(slug);
+const Course = mongoose.model('Course', CourseSchema);
+export default Course;

@@ -13,9 +13,7 @@ class NewController {
                     courses: multipleMongooseToObject(courses),
                 });
             })
-            .catch((err) => {
-                res.status(400).json({ err: 'error!!!' });
-            });
+            .catch(next)
 
         // try {
         //     const courses = await Course.find().exec();
@@ -25,6 +23,8 @@ class NewController {
         // } catch (err) {
         //     next(err);
         // }
+
+        
     }
     // [GET] /search
     search(req, res) {
