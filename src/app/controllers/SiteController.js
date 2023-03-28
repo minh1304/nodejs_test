@@ -4,16 +4,13 @@ import Course from '../models/Course';
 class NewController {
     //[GET] /home
     home(req, res, next) {
-        const result = Course.find().exec();
-        result
-            .then((courses) => {
-
-                // courses = courses.map((course) => course.toObject());
-                res.render('home', {
-                    courses: multipleMongooseToObject(courses),
-                });
-            })
-            .catch(next)
+        Course.find({})
+        .then((courses) => {
+            res.render('home', {
+                courses: multipleMongooseToObject(courses),
+            });
+        })
+        .catch(next);
 
         // try {
         //     const courses = await Course.find().exec();

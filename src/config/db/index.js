@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 async function connect() {
     try {
-        await mongoose.connect('mongodb://localhost:27017/education_dev');
-        console.log('kết nối thành công');
+        await mongoose.connect('mongodb://localhost:27017/education_dev', {});
+        console.log('Connect successfully!!!');
     } catch (error) {
-        console.log('kết mối thất bại', error);
+        console.log('Connect failure!!!');
     }
 }
 
