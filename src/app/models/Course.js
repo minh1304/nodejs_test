@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 const slug = require('mongoose-slug-generator');
+const mongooseDelete = require('mongoose-delete');
 
 const Schema = mongoose.Schema;
 const CourseSchema = new Schema(
@@ -20,5 +21,10 @@ const CourseSchema = new Schema(
 );
 
 CourseSchema.plugin(slug);
+CourseSchema.plugin(mongooseDelete, {
+    deletedAt: true,
+    overrideMethods: 'all',
+});
+
 const Course = mongoose.model('Course', CourseSchema);
 export default Course;
