@@ -4,13 +4,30 @@ import Course from '../models/Course';
 class NewController {
     //[GET] /me/storeCourses
     storeCourses(req, res, next) {
-        Course.find({})
-            .then((courses) =>
+        Promise.all([Course.find({}), Course.countDocumentsDeleted()])
+            .then(([courses, deletedCount]) => {
                 res.render('me/store-courses', {
-                    courses: multipleMongooseToObject(courses),
-                }),
-            )
-            .catch(next);
+                    deletedCount,
+                    courses: multipleMongooseToObject(courses) 
+                })
+            }) 
+            .catch(next)
+
+
+
+
+        // Course.countDocumentsDeleted()
+        //     .then((countDelete) => {
+        //         console.log(countDelete);
+        //     })
+        //     .catch(next);
+        // Course.find({})
+        //     .then((courses) =>
+        //         res.render('me/store-courses', {
+        //             courses: multipleMongooseToObject(courses),
+        //         }),
+        //     )
+        //     .catch(next);
     }
     //[GET] /me/trash/courses
     trashCourses(req, res, next) {
