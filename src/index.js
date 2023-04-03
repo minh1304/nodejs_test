@@ -5,11 +5,14 @@ const methodOverride = require('method-override')
 const morgan = require('morgan');
 import data from './config/db';
 
+
+
 data();
 const app = express();
 const port = 3000;
 
 import route from './routes';
+import initAPIRoute from './routes/api';
 
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(morgan('combined'))
@@ -27,12 +30,17 @@ app.engine(
         },
     }),
 );
+
+
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
 //Routes init
 route(app);
+initAPIRoute(app);
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
 });
+
+

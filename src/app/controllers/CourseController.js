@@ -65,7 +65,7 @@ class CourseController {
         const course = new Course(formData);
         course
             .save()
-            .then(() => res.redirect('/me/store/courses'))
+            .then(() => res.redirect('/me/stored/courses'))
             .catch((err) => {});
     }
 
